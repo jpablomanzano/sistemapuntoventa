@@ -60,7 +60,7 @@ public class fhabitacion {
         }
     }
     
-    public boolean insertar (vhabitacion dts){
+    public boolean insertar (vhabitacion dts) {
             sSQL = "insert into habitacion {numero_habitacion, piso, descripcion, caracteristicas, preciodiario_habitacion, estado, tipo_habitacion"+
                     "values (?,?,?,?,?,?,?)";
            try {
@@ -74,13 +74,25 @@ public class fhabitacion {
                pst.setString(6, dts.getEstado());
                pst.setString(7, dts.getTipo_habitacion());
                
+               int n = pst.executeUpdate();
+               
+               if (n!=0){
+                   return true;
+                   
+               }else{
+                   return false;
+               }
+                
+                   
+               
            } catch (Exception e) {
                JOptionPane.showConfirmDialog(null, e);
+               return false;
            }
+    }
+            
     
-            }
-    
-    public boolean editar (vhabitacion dts){
+    public boolean editar (vhabitacion dts) {
            try {
                
            } catch (Exception e) {
@@ -89,7 +101,7 @@ public class fhabitacion {
     
             
     }
-    public boolean eliminar (vhabitacion dts){
+    public boolean eliminar (vhabitacion dts) {
            try {
                
            } catch (Exception e) {
@@ -100,4 +112,6 @@ public class fhabitacion {
 
     
     }
-}
+
+
+
