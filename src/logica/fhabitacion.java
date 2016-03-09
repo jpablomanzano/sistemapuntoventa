@@ -5,7 +5,9 @@
  */
 package logica;
 
+import datos.vhabitacion;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -21,7 +23,7 @@ public class fhabitacion {
     
     public DefaultTableModel mostrar (String buscar){
         DefaultTableModel modelo;
-        String [] titulos = {"ID", "Número", "Descripción", "Características", "Precio", "Estado", "Tipo Habitación"};
+        String [] titulos = {"ID", "Número","Piso", "Descripción", "Características", "Precio", "Estado", "Tipo Habitación"};
         
         String [] registro = new String [8];
         
@@ -37,7 +39,7 @@ public class fhabitacion {
             
             while (rs.next()){
                 registro [0]=rs.getString("idhabitacion");
-                registro [1]=rs.getString("numero");
+                registro [1]=rs.getString("numero_habitacion");
                 registro [2]=rs.getString("piso");
                 registro [3]=rs.getString("descripcion");
                 registro [4]=rs.getString("caracteristicas");
@@ -57,6 +59,45 @@ public class fhabitacion {
             return null;
         }
     }
+    
+    public boolean insertar (vhabitacion dts){
+            sSQL = "insert into habitacion {numero_habitacion, piso, descripcion, caracteristicas, preciodiario_habitacion, estado, tipo_habitacion"+
+                    "values (?,?,?,?,?,?,?)";
+           try {
+               
+               PreparedStatement pst =cn.prepareStatement(sSQL);
+               pst.setString(1, dts.getNumero_habitacion());
+               pst.setString(2, dts.getPiso());
+               pst.setString(3, dts.getDescripcion());
+               pst.setString(4, dts.getCaracteristicas());
+               pst.setDouble(5, dts.getPreciodiario_habitacion());
+               pst.setString(6, dts.getEstado());
+               pst.setString(7, dts.getTipo_habitacion());
+               
+           } catch (Exception e) {
+               JOptionPane.showConfirmDialog(null, e);
+           }
+    
+            }
+    
+    public boolean editar (vhabitacion dts){
+           try {
+               
+           } catch (Exception e) {
+               JOptionPane.showConfirmDialog(null, e);
+           }
+    
+            
+    }
+    public boolean eliminar (vhabitacion dts){
+           try {
+               
+           } catch (Exception e) {
+               JOptionPane.showConfirmDialog(null, e);
+           }
+    
+            
+
+    
+    }
 }
-
-
