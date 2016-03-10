@@ -5,6 +5,9 @@
  */
 package presentacion;
 
+import javax.swing.table.DefaultTableModel;
+import logica.fhabitacion;
+
 /**
  *
  * @author Grupo Lorca
@@ -17,6 +20,98 @@ public class frmhabitacion extends javax.swing.JFrame {
     public frmhabitacion() {
         initComponents();
     }
+    
+    private String accion ="guardar";
+    
+    void ocultar_columnas (){
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+
+    }
+    
+    void inhabilitar(){
+        txtidhabitacion1.setVisible(false);
+        cbopiso.setEnabled(false);
+        txtnumero.setEnabled(false);
+        txtdescripcion.setEnabled(false);
+        txtcaracteristicas.setEnabled(false);
+        txtpreciodiario.setEnabled(false);
+        cboestado.setEnabled(false);
+        cbotipohabitacion.setEnabled(false);
+        
+        //Inhabilitar botones
+        btnguardar.setEnabled(false);
+        btncancelar.setEnabled(false);
+        btneliminar.setEnabled(false);
+        
+        txtidhabitacion1.setText("");
+        txtpreciodiario.setText("");
+        txtcaracteristicas.setText("");
+        txtdescripcion.setText("");
+        
+        
+    }
+    
+     void habilitar(){
+        txtidhabitacion1.setVisible(false);
+        
+        cbopiso.setEnabled(true);
+        txtnumero.setEnabled(true);
+        txtdescripcion.setEnabled(true);
+        txtcaracteristicas.setEnabled(true);
+        txtpreciodiario.setEnabled(true);
+        cboestado.setEnabled(true);
+        cbotipohabitacion.setEnabled(true);
+        
+        //Inhabilitar botones
+        btnguardar.setEnabled(true);
+        btncancelar.setEnabled(true);
+        btneliminar.setEnabled(true);
+        
+        //Dejar en blanco textbox
+        txtidhabitacion1.setText("");
+        txtpreciodiario.setText("");
+        txtcaracteristicas.setText("");
+        txtdescripcion.setText("");
+        
+        
+    }
+     void mostrar(String buscar){
+         
+         try {
+             DefaultTableModel modelo;
+             fhabitacion func = new fhabitacion();
+             modelo = func.mostrar(buscar);
+             
+             
+         } catch (Exception e) {
+         }
+        txtidhabitacion1.setVisible(false);
+        
+        cbopiso.setEnabled(true);
+        txtnumero.setEnabled(true);
+        txtdescripcion.setEnabled(true);
+        txtcaracteristicas.setEnabled(true);
+        txtpreciodiario.setEnabled(true);
+        cboestado.setEnabled(true);
+        cbotipohabitacion.setEnabled(true);
+        
+        //Inhabilitar botones
+        btnguardar.setEnabled(true);
+        btncancelar.setEnabled(true);
+        btneliminar.setEnabled(true);
+        
+        //Dejar en blanco textbox
+        txtidhabitacion1.setText("");
+        txtpreciodiario.setText("");
+        txtcaracteristicas.setText("");
+        txtdescripcion.setText("");
+        
+        
+    }
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
