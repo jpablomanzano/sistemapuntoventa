@@ -94,15 +94,45 @@ public class fhabitacion {
 
 
     public boolean editar (vhabitacion dts) {
+       
+           sSQL= "update habitacion set numero_habitacion=?, piso=?, descripcion=?, caracteristicas=?, preciodiario_habitacion=?, estado=?, tipo_habitacion=?"+"where idhabitacion=?";
+          
            try {
+                PreparedStatement pst =cn.prepareStatement(sSQL);
+               pst.setString(1, dts.getNumero_habitacion());
+               pst.setString(2, dts.getPiso());
+               pst.setString(3, dts.getDescripcion());
+               pst.setString(4, dts.getCaracteristicas());
+               pst.setDouble(5, dts.getPreciodiario_habitacion());
+               pst.setString(6, dts.getEstado());
+               pst.setString(7, dts.getTipo_habitacion());
+               pst.setInt(8, dts.getIdhabitacion());
+
+               int n = pst.executeUpdate();
+
+               if (n!=0){
+                   return true;
+
+               }
+               else{
+                   return false;
+               }
+               
+           
 
            } catch (Exception e) {
                JOptionPane.showConfirmDialog(null, e);
+               return false;
            }
 
 
-    }
+    
+   }
+   
+    
     public boolean eliminar (vhabitacion dts) {
+            sSQL = "delete from habitacion where idhabitacion=?";
+    
            try {
 
            } catch (Exception e) {
