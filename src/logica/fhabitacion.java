@@ -15,28 +15,28 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class fhabitacion {
-    
+
     private conexion mysql= new conexion ();
     private Connection cn = mysql.conectar();
     private String sSQL ="";
     public Integer totalregistros;
-    
+
     public DefaultTableModel mostrar (String buscar){
         DefaultTableModel modelo;
         String [] titulos = {"ID", "Número","Piso", "Descripción", "Características", "Precio", "Estado", "Tipo Habitación"};
-        
+
         String [] registro = new String [8];
-        
+
         totalregistros = 0;
-        
+
         modelo = new DefaultTableModel (null, titulos);
-        
+
         sSQL = "Select * from habitacion where piso like '% "+ buscar + "% ' order by idhabitacion";
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs=st.executeQuery(sSQL);
-            
+
             while (rs.next()){
                 registro [0]=rs.getString("idhabitacion");
                 registro [1]=rs.getString("numero_habitacion");
@@ -46,25 +46,25 @@ public class fhabitacion {
                 registro [5]=rs.getString("preciodiario_habitacion");
                 registro [6]=rs.getString("estado");
                 registro [7]=rs.getString("tipo_habitacion");
-                
+
                 totalregistros=totalregistros+1;
                 modelo.addRow(registro);
-                
-                
+
+
             }
             return modelo;
-            
+
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
             return null;
         }
     }
-    
+
     public boolean insertar (vhabitacion dts) {
             sSQL = "insert into habitacion {numero_habitacion, piso, descripcion, caracteristicas, preciodiario_habitacion, estado, tipo_habitacion"+
                     "values (?,?,?,?,?,?,?)";
            try {
-               
+
                PreparedStatement pst =cn.prepareStatement(sSQL);
                pst.setString(1, dts.getNumero_habitacion());
                pst.setString(2, dts.getPiso());
@@ -73,45 +73,44 @@ public class fhabitacion {
                pst.setDouble(5, dts.getPreciodiario_habitacion());
                pst.setString(6, dts.getEstado());
                pst.setString(7, dts.getTipo_habitacion());
-               
+
                int n = pst.executeUpdate();
-               
+
                if (n!=0){
                    return true;
-                   
-               }else{
+
+               }
+               else{
                    return false;
                }
-                
-                   
-               
+
+
+
            } catch (Exception e) {
                JOptionPane.showConfirmDialog(null, e);
                return false;
            }
     }
-            
-    
+
+
     public boolean editar (vhabitacion dts) {
            try {
-               
+
            } catch (Exception e) {
                JOptionPane.showConfirmDialog(null, e);
            }
-    
-            
+
+
     }
     public boolean eliminar (vhabitacion dts) {
            try {
-               
+
            } catch (Exception e) {
                JOptionPane.showConfirmDialog(null, e);
            }
-    
-            
 
-    
+
+
+
     }
-
-
-
+    
