@@ -134,13 +134,29 @@ public class fhabitacion {
             sSQL = "delete from habitacion where idhabitacion=?";
     
            try {
+                PreparedStatement pst =cn.prepareStatement(sSQL);
+               pst.setInt(1, dts.getIdhabitacion());
+               
+
+               int n = pst.executeUpdate();
+
+               if (n!=0){
+                   return true;
+
+               }
+               else{
+                   return false;
+               }
 
            } catch (Exception e) {
                JOptionPane.showConfirmDialog(null, e);
+               return false;
            }
 
 
 
 
+    
     }
+}
     
